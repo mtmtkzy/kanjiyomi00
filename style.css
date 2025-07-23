@@ -1,0 +1,113 @@
+body {{
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f7f6;
+    color: #333;
+}}
+
+.container {{
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+}}
+
+h1 {{
+    color: #007bff;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}}
+
+.quiz-area {{
+    margin-bottom: 25px;
+}}
+
+.kanji-display {{
+    font-size: 4em;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #343a40;
+}}
+
+#answerInput {{
+    width: 80%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5 पांचpx;
+    font-size: 1.2em;
+    text-align: center;
+}}
+
+#answerInput:focus {{
+    border-color: #007bff;
+    outline: none;
+}}
+
+button {{
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin: 5px;
+}}
+
+button:hover {{
+    background-color: #218838;
+    transform: translateY(-2px);
+}}
+
+button:active {{
+    transform: translateY(0);
+}}
+
+#submitButton {{
+    background-color: #007bff;
+}}
+
+#submitButton:hover {{
+    background-color: #0056b3;
+}}
+
+#nextButton {{
+    background-color: #6c757d;
+}}
+
+#nextButton:hover {{
+    background-color: #5a6268;
+}}
+
+.message {{
+    font-size: 1.3em;
+    margin-top: 20px;
+    font-weight: bold;
+}}
+
+.message.correct {{
+    color: #28a745;
+}}
+
+.message.incorrect {{
+    color: #dc3545;
+}}
+
+.score-area {{
+    margin-top: 30px;
+    font-size: 1.3em;
+    color: #555;
+}}
+
+.hidden {{
+    display: none;
+}}
