@@ -1,26 +1,51 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>漢字読みクイズ（小学3年生）</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>漢字読みクイズ</h1>
-        <div class="quiz-area">
-            <p id="questionKanji" class="kanji-display"></p>
-            <input type="text" id="answerInput" placeholder="読みを入力してください">
-            <button id="submitButton">回答する</button>
-            <p id="resultMessage" class="message"></p>
-            <button id="nextButton" class="hidden">次の問題</button>
-        </div>
-        <div class="score-area">
-            <p>正解数: <span id="correctCount">0</span> / <span id="totalCount">0</span></p>
-        </div>
-    </div>
+import os
 
-    <script src="script.js"></script>
-</body>
-</html>
+output_dir = "quiz_game"
+html_file_path = os.path.join(output_dir, "index.html")
+
+# Read the current index.html content
+with open(html_file_path, "r", encoding="utf-8") as f:
+    html_content = f.read()
+
+# Replace the input and submit button with the choices area
+# Find the quiz-area div
+quiz_area_start = html_content.find('<div class="quiz-area">')
+quiz_area_end = html_content.find('</div>', quiz_area_start) + len('</div>')
+
+# Content to be replaced (input and submit button)
+replace_start = html_content.find('<input type="text" id="answerInput">', quiz_area_start)
+replace_end = html_content.find('<button id="submitButton">回答する</button>', replace_start) + len('<button id="submitButton">回答する</button>')
+
+content_to_replace = html_content[replace_start:replace_end]
+
+# New content for choices
+choices_html = """
+            <div id="choicesArea">
+                <button class="choice-button" data-index="0"></button>
+                <button class="choice-button" data-index="1"></button>
+                <button class="choice-button" data-index="2"></button>
+                <button class="choice-button" data-index="3"></button>
+            </div>
+"""
+
+# Perform the replacement
+modified_html_content = html_content.replace(content_to_replace, choices_html)
+
+# Add effect overlay and audio elements before the closing body tag
+body_end = modified_html_content.find('</body>')
+
+effect_and_audio_html = """
+    <div id="effectOverlay" class="hidden"></div>
+    <div id="correctEffect" class="hidden">✨ 正解 ✨</div>
+    <audio id="pingpongSound" src="pingpong.mp3" preload="auto"></audio>
+
+"""
+
+final_html_content = modified_html_content[:body_end] + effect_and_audio_html + modified_html_content[body_end:]
+
+
+# Write the modified content back to index.html
+with open(html_file_path, "w", encoding="utf-8") as f:
+    f.write(final_html_content)
+
+print(f"'{html_file_path}' が修正されました。")
